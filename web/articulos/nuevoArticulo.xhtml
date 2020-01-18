@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:define name="titulo">
+        Nuevo Articulo
+    </ui:define>
+
+    <ui:define name="contenido">
+        <h:panelGroup layout="block" class="alert alert-danger"
+                      rendered="#{not empty facesContext.messageList}">
+            <h:messages/>
+        </h:panelGroup>
+        <h:form>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <h:inputHidden id="codArticulo" value="#{articulosBeans.articulo.codArticulo}"/>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <h:outputLabel value="CodReferencia:" for="codReferencia" />
+                        <h:inputText id="codReferencia" value="#{articulosBeans.articulo.codReferencia}" 
+                                     title="CodReferencia" class="form-control"/>
+                    </div> 
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <h:outputLabel value="NumeroLote:" for="numeroLote" />
+                        <h:inputText id="numeroLote" value="#{articulosBeans.articulo.numeroLote}" 
+                                     title="NumeroLote" class="form-control"/>
+                    </div> 
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <h:outputLabel value="Descripcion:" for="descripcion" />
+                        <h:inputText id="descripcion" value="#{articulosBeans.articulo.descripcion}" 
+                                     title="Descripcion" 
+                                     required="true" 
+                                     requiredMessage="The Descripcion field is required." class="form-control"/>
+                    </div> 
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <h:outputLabel value="PrecioCompra:" for="precioCompra" />
+                        <h:inputText id="precioCompra" value="#{articulosBeans.articulo.precioCompra}" 
+                                     title="PrecioCompra" class="form-control"/>
+                    </div> 
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <h:outputLabel value="PrecioVenta:" for="precioVenta" />
+                        <h:inputText id="precioVenta" value="#{articulosBeans.articulo.precioVenta}" 
+                                     title="PrecioVenta" class="form-control"/>
+                    </div> 
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <h:outputLabel value="CantidadCtrl:" for="cantidadCtrl" />
+                        <h:inputText id="cantidadCtrl" value="#{articulosBeans.articulo.cantidadCtrl}" 
+                                     title="CantidadCtrl" class="form-control"/>
+                    </div> 
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <h:outputLabel value="StockCtrl:" for="stockCtrl" />
+                        <h:inputText id="stockCtrl" value="#{articulosBeans.articulo.stockCtrl}" 
+                                     title="StockCtrl" class="form-control"/>
+                    </div> 
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <h:outputLabel value="CodCategoria:" for="codCategoria" />
+                        <h:selectOneMenu id="codCategoria" value="#{articulosBeans.articulo.codCategoria}" 
+                                         title="CodCategoria" class="form-control">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                    </div> 
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <h:outputLabel value="Estado:" for="estado" />
+                        <h:selectOneMenu id="estado" value="#{articulosBeans.articulo.estado}" 
+                                         title="Estado" 
+                                         required="true" 
+                                         requiredMessage="The Estado field is required." class="form-control">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                    </div> 
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <h:outputLabel value="CodIva:" for="codIva" />
+                        <h:selectOneMenu id="codIva" value="#{articulosBeans.articulo.codIva}" 
+                                         title="CodIva" 
+                                         required="true" 
+                                         requiredMessage="The CodIva field is required." class="form-control">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                    </div> 
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <h:outputLabel value="CodMarca:" for="codMarca" />
+                        <h:selectOneMenu id="codMarca" value="#{articulosBeans.articulo.codMarca}" 
+                                         title="CodMarca" class="form-control">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                    </div> 
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <h:outputLabel value="CodProveedor:" for="codProveedor" />
+                        <h:selectOneMenu id="codProveedor" value="#{articulosBeans.articulo.codProveedor}" 
+                                         title="CodProveedor" 
+                                         required="true" 
+                                         requiredMessage="The CodProveedor field is required." class="form-control">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                    </div> 
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <h:outputLabel value="CodUniMed:" for="codUniMed" />
+                        <h:selectOneMenu id="codUniMed" value="#{articulosBeans.articulo.codUniMed}" 
+                                         title="CodUniMed" 
+                                         required="true" 
+                                         requiredMessage="The CodUniMed field is required." class="form-control">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{fixme}"/>
+                        </h:selectOneMenu>
+                    </div> 
+                </div>
+
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

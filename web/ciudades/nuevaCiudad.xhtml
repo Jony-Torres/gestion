@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml">
+
+    <ui:define name="titulo">
+        Nueva Ciudad
+    </ui:define>
+
+    <ui:define name="contenido">
+        <div class="row">
+            <div class="col-md-6">
+                <h:panelGroup layout="block" class="alert alert-danger"
+                              rendered="#{not empty facesContext.messageList}">
+                <h:messages/>
+                </h:panelGroup>
+                <h:form>
+                    <div class="form-group">
+                         <h:outputLabel value="Codigo: " for="codCiudad" />
+                        <h:inputText id="codCiudad" value="#{ciudadesBeans.ciudad.codCiudad}" title="CodCiudad" 
+                                     required="false" requiredMessage="El codigo es obligatorio"
+                                     readonly="#{not facesContext.postback or facesContext.renderResponse}"
+                                     class="form-control"/>
+                    </div>
+                    <div class="form-group">   
+                         <h:outputLabel value="Nombre: " for="descCiudad" />
+                        <h:inputText id="descCiudad" value="#{ciudadesBeans.ciudad.descCiudad}" title="DescCiudad" 
+                                     required="true" requiredMessage="El nombre de la Ciudad es obligatorio"
+                                     class="form-control"/>
+                    </div>
+                    <div class="form-group">    
+                         <h:outputLabel value="Departamento: " for="codDepartamento" />
+                        <h:selectOneMenu id="codDepartamento" value="#{ciudadesBeans.ciudad.codDepartamento}" title="CodDepartamento" 
+                                         required="true" requiredMessage="El Departamento es obligatorio"
+                                         class="form-control">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{ciudadesBeans.listDptos}" var="dptos"
+                                           itemValue="#{dptos}"
+                                           itemLabel="#{dptos.descDepartamento}"/>
+                        </h:selectOneMenu>
+                    </div>
+                    <h:commandButton value="Guardar" class="btn btn-success"
+                                     action="#{ciudadesBeans.insertarCiudad()}"/>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

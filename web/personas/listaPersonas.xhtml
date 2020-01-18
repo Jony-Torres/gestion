@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml">
+
+    <ui:define name="titulo">
+        Personas
+    </ui:define>
+
+    <ui:define name="contenido">
+        <div class="row">
+<!--            <div class="col-md-12">-->
+                <h:link style="margin:10px;" outcome="/personas/nuevaPersona" value="Nueva Persona" class="btn btn-success"/>    
+                <h:form prependId="false">
+                    <h:dataTable value="#{personasBeans.listaPersonas}" class="table table-bordered" style="width:100%"
+                                 var="item" id="tabla">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Codigo"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codPersona}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="1er Nombre"/>
+                            </f:facet>
+                            <h:outputText value="#{item.primerNombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="2do Nombre"/>
+                            </f:facet>
+                            <h:outputText value="#{item.segundoNombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="1er Apellido"/>
+                            </f:facet>
+                            <h:outputText value="#{item.primerApellido}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="2do Apellido"/>
+                            </f:facet>
+                            <h:outputText value="#{item.segundoApellido}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="C.I/R.U.C"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numeroDocumento}"/>
+                        </h:column>
+<!--                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Fecha Nacim."/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaNacimiento}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>-->
+<!--                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Numero Telefono"/>
+                            </f:facet>
+                            <h:outputText value="#{item.telefono}"/>
+                        </h:column>-->
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nro Celular"/>
+                            </f:facet>
+                            <h:outputText value="#{item.celular}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Operaciones"/>
+                            </f:facet>
+                            <h:commandLink class="btn btn-info" action="#{personasBeans.obtenerPersona()}">
+                                <i class="glyphicon glyphicon-edit"></i>
+                                <f:param name="codigo" value="#{item.codPersona}"/>
+                            </h:commandLink>
+                            <h:commandLink class="btn btn-danger" style="margin-left: 5px" onclick="return confirmar()"
+                                           action="#{personasBeans.eliminarPersona()}">
+                                <i class="glyphicon glyphicon-trash"></i>
+                                <f:param name="codigo" value="#{item.codPersona}"/>
+                            </h:commandLink>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+<!--            </div>-->
+        </div>
+        <script>
+            $(document).ready(function () {
+                $("#tabla").dataTable({
+            responsive: true,
+            language: {
+                url: '../resources/datatables/es-ar.json' //Ubicacion del archivo con el json del idioma.
+            }
+        });
+            });
+            function confirmar() {
+                return confirm("Realmente desea ELIMINAR el registro?")
+            }
+        </script>
+    </ui:define>
+
+</ui:composition>

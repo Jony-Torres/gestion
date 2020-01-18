@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:define name="titulo">
+        Nuevo Cliente
+    </ui:define>
+
+    <ui:define name="contenido">
+        <h:panelGroup layout="block" class="alert alert-danger"
+                      rendered="#{not empty facesContext.messageList}">
+            <h:messages/>
+        </h:panelGroup>
+        <h:form>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <h:inputHidden id="codCliente" value="#{clientesBeans.cliente.codCliente}"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <h:outputLabel value="Persona:" for="codPersona" />
+                        <b:selectOneMenu id="codPersona" value="#{clientesBeans.cliente.codPersona}" select2="true"
+                                         title="CodPersona" required="true" 
+                                         requiredMessage="El codigo de persona es Obligatorio"
+                                         class="form-control">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItem itemValue="#{null}" itemLabel="SELECCIONE PERSONA" />
+                            <f:selectItems value="#{personasBeans.listaPersonas}" var="pers"
+                                           itemValue="#{pers}"
+                                           itemLabel="#{pers.primerNombre} #{pers.segundoNombre} #{pers.primerApellido} #{pers.segundoApellido} #{pers.numeroDocumento}"/>
+                        </b:selectOneMenu>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <h:outputLabel value="Tipo Cliente:" for="codTipCliente" />
+                        <h:selectOneMenu id="codTipCliente" value="#{clientesBeans.cliente.codTipCliente}" 
+                                         title="CodTipCliente" class="form-control">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{tipoClienteBeans.listTipoCliente}" var="tipcli"
+                                           itemValue="#{tipcli}"
+                                           itemLabel="#{tipcli.descripcion}"/>
+                        </h:selectOneMenu> 
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <h:outputLabel value="Moneda:" for="codMoneda" />
+                        <h:selectOneMenu id="codMoneda" value="#{clientesBeans.cliente.codMoneda}" 
+                                         title="CodMoneda" class="form-control">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{monedasBeans.listMonedas}" var="moneda"
+                                           itemValue="#{moneda}"
+                                           itemLabel="#{moneda.descMoneda}"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <h:outputLabel value="Cobrador:" for="codCobrador" />
+                        <h:selectOneMenu id="codCobrador" value="#{clientesBeans.cliente.codCobrador}" 
+                                         title="CodCobrador" class="form-control">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{cobradoresBeans.listCobradores}" var="cob"
+                                           itemValue="#{cob}"
+                                           itemLabel="#{cob.codPersona.primerNombre} #{cob.codPersona.primerApellido}"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <h:outputLabel value="Vendedor:" for="codVendedor" />
+                        <h:selectOneMenu id="codVendedor" value="#{clientesBeans.cliente.codVendedor}" 
+                                         title="CodVendedor" class="form-control">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{vendedoresBeans.listVendedores}" var="ven"
+                                           itemValue="#{ven}"
+                                           itemLabel="#{ven.codPersona.primerNombre} #{ven.codPersona.primerApellido}"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <h:outputLabel value="Condicion Venta:" for="codCondVenta" />
+                        <h:selectOneMenu id="codCondVenta" value="#{clientesBeans.cliente.codCondVenta}" 
+                                         title="CodCondVenta" class="form-control">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{condVentaBeans.listCondVentas}" var="condven"
+                                           itemValue="#{condven}"
+                                           itemLabel="#{condven.descCondicion}"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <h:outputLabel value="Estado:" for="estado" />
+                        <h:selectOneMenu id="estado" value="#{clientesBeans.cliente.estado}" 
+                                         title="estado" class="form-control">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{estadosBeans.listEstados}" var="est"
+                                           itemValue="#{est}"
+                                           itemLabel="#{est.descEstado}"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <h:outputLabel value="Comentario:" for="comentario" />
+                        <h:inputText id="comentario" value="#{clientesBeans.cliente.comentario}" 
+                                     title="Comentario" class="form-control"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <h:outputLabel value="Limite Credito:" for="limiteCredito" />
+                        <h:inputText id="limiteCredito" value="#{clientesBeans.cliente.limiteCredito}" 
+                                     title="LimiteCredito" class="form-control"/>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <h:commandButton value="Guardar" class="btn btn-success" style="width:100px"
+                                         action="#{clientesBeans.insertarCliente()}"/>
+
+                        <h:link style="width:100px;margin:20px" outcome="/clientes/listaClientes" value="Cancelar" class="btn btn-danger"/> 
+                    </div>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

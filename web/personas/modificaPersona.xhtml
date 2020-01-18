@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:define name="titulo">
+        Modificación Persona 
+    </ui:define>
+
+    <ui:define name="contenido">
+        <h:panelGroup layout="block" class="alert alert-danger"
+                      rendered="#{not empty facesContext.messageList}">
+            <h:messages/>
+        </h:panelGroup> 
+        <h:form>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <h:outputLabel value="Codigo:" for="Codigo" />
+                        <h:inputText id="codPersona" value="#{personasBeans.persona.codPersona}"
+                                     title="Codigo" 
+                                     readonly="#{not facesContext.postback or facesContext.renderResponse}"
+                                     class="form-control"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">    
+                        <h:outputLabel value="Primer Nombre:" for="primerNombre" />
+                        <h:inputText id="primerNombre" value="#{personasBeans.persona.primerNombre}" 
+                                     title="Primer Nombre" required="true" 
+                                     requiredMessage="El primer Nombre es obligatorio"
+                                     class="form-control"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">    
+                        <h:outputLabel value="Segundo Nombre:" for="segundoNombre" />
+                        <h:inputText id="segundoNombre" value="#{personasBeans.persona.segundoNombre}" 
+                                     title="Segundo Nombre"
+                                     class="form-control"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <h:outputLabel value="Primer Apellido:" for="primerApellido" />
+                        <h:inputText id="primerApellido" value="#{personasBeans.persona.primerApellido}" 
+                                     title="Primer Apellido" required="true" 
+                                     requiredMessage="El primer Apellido es obligatorio"
+                                     class="form-control"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <h:outputLabel value="Segundo Apellido:" for="segundoApellido" />
+                        <h:inputText id="segundoApellido" value="#{personasBeans.persona.segundoApellido}" 
+                                     title="Segundo Apellido"
+                                     class="form-control"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <h:outputLabel value="Tipo Documento:" for="codTipoDoc" />
+                        <h:selectOneMenu id="codTipoDoc" value="#{personasBeans.persona.codTipoDoc}" 
+                                         title="Tipo Documento" required="true" 
+                                         requiredMessage="El Tipo de Documento es Obligatorio"
+                                         class="form-control">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{tipoDocBeans.listaTipoDoc}" var="tipdoc"
+                                           itemValue="#{tipdoc}"
+                                           itemLabel="#{tipdoc.descTipoDoc}"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <h:outputLabel value="Numero Documento:" for="numeroDocumento" />
+                        <h:inputText id="numeroDocumento" value="#{personasBeans.persona.numeroDocumento}" 
+                                     title="Numero Documento" required="true" 
+                                     requiredMessage="El Numero de Documento es obligatorio"
+                                     class="form-control"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <h:outputLabel value="Fecha Nacimiento:" for="fechaNacimiento" />
+                        <h:inputText id="fechaNacimiento" value="#{personasBeans.persona.fechaNacimiento}" 
+                                     title="Fecha Nacimiento"
+                                     class="form-control">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:inputText>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <h:outputLabel value="Estado Civil:" for="codEstadoCivil" />
+                        <h:selectOneMenu id="codEstadoCivil" value="#{personasBeans.persona.codEstadoCivil}" 
+                                         title="Estado Civil"
+                                         class="form-control">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{estadoCivilBeans.listaEstadoCivil}" var="estcivil"
+                                           itemValue="#{estcivil}"
+                                           itemLabel="#{estcivil.descEstadoCivil}"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <h:outputLabel value="Telefono:" for="telefono" />
+                        <h:inputText id="telefono" value="#{personasBeans.persona.telefono}" 
+                                     title="Telefono"
+                                     class="form-control"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <h:outputLabel value="Celular:" for="celular" />
+                        <h:inputText id="celular" value="#{personasBeans.persona.celular}" 
+                                     title="Celular"
+                                     class="form-control"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <h:outputLabel value="Pais:" for="codPais"/>
+                        <h:selectOneMenu id="codPais" value="#{personasBeans.persona.codPais}" 
+                                         title="Pais" class="form-control">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{paisesBeans.listPaises}" var="pais"
+                                           itemValue="#{pais}"
+                                           itemLabel="#{pais.descPais}"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <h:outputLabel value="Departamento:" for="codDepartamento" />
+                        <b:selectOneMenu id="codDepartamento" value="#{personasBeans.persona.codDepartamento}" select2="true"
+                                         title="Departamento"
+                                         class="form-control">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{departamentosBeans.listDptos}" var="dptos"
+                                           itemValue="#{dptos}"
+                                           itemLabel="#{dptos.descDepartamento}"/>
+                        </b:selectOneMenu>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <h:outputLabel value="Ciudad:" for="codCiudad" />
+                        <h:selectOneMenu id="codCiudad" value="#{personasBeans.persona.codCiudad}" 
+                                         title="Ciudad"
+                                         class="form-control">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{ciudadesBeans.listCiudades}" var="ciud"
+                                           itemValue="#{ciud}"
+                                           itemLabel="#{ciud.descCiudad}"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <h:outputLabel value="Barrio:" for="codBarrio" />
+                        <h:selectOneMenu id="codBarrio" value="#{personasBeans.persona.codBarrio}" 
+                                         title="Barrio"
+                                         class="form-control">
+                            <!-- TODO: update below reference to list of available items-->
+                            <f:selectItems value="#{barriosBeans.listaBarrios}" var="barrio"
+                                           itemValue="#{barrio}"
+                                           itemLabel="#{barrio.descBarrio}"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <h:outputLabel value="Direccion:" for="direccion" />
+                        <h:inputText id="direccion" value="#{personasBeans.persona.direccion}" 
+                                     title="Direccion"
+                                     class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h:commandButton value="Modificar" class="btn btn-success" style="padding: 5px 20px"
+                                     action="#{personasBeans.modificarPersona()}"/>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
