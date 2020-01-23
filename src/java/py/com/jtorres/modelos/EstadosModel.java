@@ -21,7 +21,7 @@ public class EstadosModel {
         em.persist(object);
     }
 
-    public List<Estados> listEstados() {
+    public List<Estados> listEstadosClient() {
         Query query = null;
         try {
             query = em.createNamedQuery("Estados.findByTablaRef");
@@ -31,7 +31,16 @@ public class EstadosModel {
         }
         return query.getResultList();
     }
-
+    public List<Estados> listEstadosArtic() {
+        Query query = null;
+        try {
+            query = em.createNamedQuery("Estados.findByTablaRef");
+            query.setParameter("tablaRef", "articulos.estado");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return query.getResultList();
+    }
     public Estados obtenerEstado(String codigo) {
         return em.find(Estados.class, Integer.parseInt(codigo));
     }

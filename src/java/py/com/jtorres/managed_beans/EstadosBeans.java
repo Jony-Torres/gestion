@@ -22,9 +22,12 @@ public class EstadosBeans {
     public EstadosBeans() {
     }
 
-    public List<Estados> getListEstados() {
-        listEstados = estadosModel.listEstados();
+    public List<Estados> getListEstadosClien() {
+        listEstados = estadosModel.listEstadosClient();
         return listEstados;
     }
-    
+    public List<Estados> getListEstadosArtic() {
+        listEstados = estadosModel.listEstadosArtic();
+        return listEstados;
+    }
 }
