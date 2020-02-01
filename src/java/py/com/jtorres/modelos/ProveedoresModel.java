@@ -24,4 +24,7 @@ public class ProveedoresModel {
         Query query = em.createNamedQuery("Proveedores.findAll");
         return query.getResultList();
     }
+    public Proveedores obtenerProveedor(String codigo){
+        return em.find(Proveedores.class,Integer.parseInt(codigo));
+    }
 }

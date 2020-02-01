@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:define name="titulo">
+        Comprobante Venta
+    </ui:define>
+
+    <ui:define name="contenido">
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Articulo" for="codArticulo"/>
+                <h:inputText value="#{compDetBeans.mycomp.codArticulo}" id="codArticulo"/>
+                <h:outputLabel value="Cantidad" for="cantidad"/>
+                <h:inputText value="#{compDetBeans.mycomp.cantidad}" id="cantidad"/>
+                <h:outputLabel value="Precio" for="precio"/>
+                <h:inputText value="#{compDetBeans.mycomp.precio}" id="precio"/>
+            </h:panelGrid>
+
+            <tr>
+                <td></td>
+                <td><h:commandButton value="Add Articulo"
+                                     action="#{compDetBeans.agregarComp()}" /></td>
+            </tr>
+            <div class="col-md-12">
+                    <div class="form-group">
+                        <h:commandButton value="Guardar" class="btn btn-success" style="width:100px"
+                                         action="#{compDetBeans.insertarCompDet()}"/>
+
+                        <h:link style="width:100px;margin:20px" outcome="/articulos/listaArticulos" value="Cancelar" class="btn btn-danger"/> 
+                    </div>
+                </div>
+            <h:dataTable value="#{compDetBeans.listaCompDet}" var="det" class="table table-bordered">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Articulo"/>
+                    </f:facet>
+                    #{det.codArticulo}
+                    <f:facet name="header">
+                        <h:outputText value="Cantidad"/>
+                    </f:facet>
+                    #{det.cantidad}
+                    <f:facet name="header">
+                        <h:outputText value="Precio"/>
+                    </f:facet>
+                    #{det.precio}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Acciones"/>
+                    </f:facet>
+                    <h:commandLink action="#{compDetBeans.eliminarComp(det)}" value="Eliminar"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

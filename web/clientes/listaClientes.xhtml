@@ -12,73 +12,73 @@
 
     <ui:define name="contenido">
         <div class="row">
-<!--            <div class="col-md-12">-->
-                    <h:link style="margin:10px;" outcome="/clientes/nuevoCliente" value="Nuevo Cliente" class="btn btn-success"/>
-                    <h:form prependId="false">
-                        <h:dataTable value="#{clientesBeans.listaClientes}" class="table table-bordered" style="width:100%"
-                                 var="item" id="tabla">
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Codigo"/>
-                                </f:facet>
-                                <h:outputText value="#{item.codCliente}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Nombre"/>
-                                </f:facet>
-                                <h:outputText value="#{item.codPersona.primerNombre} #{item.codPersona.segundoNombre} #{item.codPersona.primerApellido} #{item.codPersona.segundoApellido}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="C.I/R.U.C"/>
-                                </f:facet>
-                                <h:outputText value="#{item.codPersona.numeroDocumento}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Cond Venta"/>
-                                </f:facet>
-                                <h:outputText value="#{item.codCondVenta.descCondicion}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Comentario"/>
-                                </f:facet>
-                                <h:outputText value="#{item.comentario}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Estado"/>
-                                </f:facet>
-                                <h:outputText value="#{item.estado.descEstado}"/>
-                            </h:column>
-                            <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Operaciones"/>
-                            </f:facet>
-                                <h:commandLink class="btn btn-info" action="#{clientesBeans.obtenerCliente()}">
-                                <i class="glyphicon glyphicon-edit"></i>
-                                <f:param name="codigo" value="#{item.codCliente}"/>
-                            </h:commandLink>
-                            <h:commandLink class="btn btn-danger" style="margin-left: 5px" onclick="return confirmar()"
-                                           action="#{clientesBeans.eliminarCliente()}">
-                                <i class="glyphicon glyphicon-trash"></i>
-                                <f:param name="codigo" value="#{item.codCliente}"/>
-                            </h:commandLink>
-                        </h:column>
-                        </h:dataTable>
-                    </h:form>
-<!--            </div>-->
+            <!--            <div class="col-md-12">-->
+            <h:link style="margin:10px;" outcome="/clientes/nuevoCliente" value="Nuevo Cliente" class="btn btn-success"/>
+            <h:form prependId="false">
+                <h:dataTable value="#{clientesBeans.listaClientes}" class="table table-bordered" style="width:100%"
+                             var="item" id="tabla">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Codigo"/>
+                        </f:facet>
+                        <h:outputText value="#{item.codCliente}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nombre"/>
+                        </f:facet>
+                        <h:outputText value="#{item.codPersona.primerNombre} #{item.codPersona.segundoNombre} #{item.codPersona.primerApellido} #{item.codPersona.segundoApellido}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="C.I/R.U.C"/>
+                        </f:facet>
+                        <h:outputText value="#{item.codPersona.numeroDocumento}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Cond Venta"/>
+                        </f:facet>
+                        <h:outputText value="#{item.codCondVenta.descCondicion}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Comentario"/>
+                        </f:facet>
+                        <h:outputText value="#{item.comentario}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Estado"/>
+                        </f:facet>
+                        <h:outputText value="#{item.estado.descEstado}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Operaciones"/>
+                        </f:facet>
+                        <h:commandLink class="btn btn-info" action="#{clientesBeans.obtenerCliente()}">
+                            <i class="glyphicon glyphicon-edit"></i>
+                            <f:param name="codigo" value="#{item.codCliente}"/>
+                        </h:commandLink>
+                        <h:commandLink class="btn btn-danger" style="margin-left: 5px" onclick="return confirmar()"
+                                       action="#{clientesBeans.eliminarCliente()}">
+                            <i class="glyphicon glyphicon-trash"></i>
+                            <f:param name="codigo" value="#{item.codCliente}"/>
+                        </h:commandLink>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+            <!--            </div>-->
         </div>
         <script>
             $(document).ready(function () {
                 $("#tabla").dataTable({
-            responsive: true,
-            language: {
-                url: '../resources/datatables/es-ar.json' //Ubicacion del archivo con el json del idioma.
-            }
-        });
+                    responsive: true,
+                    language: {
+                        url: '../resources/datatables/es-ar.json' //Ubicacion del archivo con el json del idioma.
+                    }
+                });
             });
             function confirmar() {
                 return confirm("Realmente desea ELIMINAR el registro?")

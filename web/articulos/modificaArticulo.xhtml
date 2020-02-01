@@ -8,7 +8,7 @@
                 xmlns:b="http://bootsfaces.net/ui">
 
     <ui:define name="titulo">
-        Nuevo Articulo
+        Modificacion Articulo
     </ui:define>
 
     <ui:define name="contenido">
@@ -20,7 +20,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <h:inputHidden id="codArticulo" value="#{articulosBeans.articulo.codArticulo}"/>
+                        <h:outputLabel value="Codigo:" for="Codigo" />
+                        <h:inputText id="codArticulo" value="#{articulosBeans.articulo.codArticulo}"
+                                       readonly="#{not facesContext.postback or facesContext.renderResponse}"/>
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -157,14 +159,13 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <h:commandButton value="Guardar" class="btn btn-success" style="width:100px"
-                                         action="#{articulosBeans.insertarArticulo()}"/>
+                                         action="#{articulosBeans.modificarArticulo()}"/>
 
                         <h:link style="width:100px;margin:20px" outcome="/articulos/listaArticulos" value="Cancelar" class="btn btn-danger"/> 
                     </div>
                 </div>
             </div>
         </h:form>
-        
     </ui:define>
 
 </ui:composition>

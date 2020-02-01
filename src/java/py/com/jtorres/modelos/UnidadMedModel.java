@@ -26,4 +26,7 @@ public class UnidadMedModel {
         Query query = em.createNamedQuery("UnidadesMedidas.findAll");
         return query.getResultList();
     }
+    public UnidadesMedidas obtenerUnidMed(String codigo){
+        return em.find(UnidadesMedidas.class,Integer.parseInt(codigo));
+    }
 }

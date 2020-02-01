@@ -46,4 +46,26 @@ public class ArticulosBeans {
         JsfUtils.addFlashMessage("exito", "Registro Exitoso");
         return "/articulos/listaArticulos?faces-redirect=true";
     }
+    public String modificarArticulo(){
+        if (articulosModel.modificarArticulo(articulo) == 0) {
+            JsfUtils.addErrorMessage("codArticulo","No se pudo modificar el Articulo");
+            return null;
+        }
+        JsfUtils.addFlashMessage("exito", "Registro Exitoso");
+        return "/articulos/listaArticulos?faces-redirect=true";
+    }
+    public String obtenerArticulo() {
+        String codigo = JsfUtils.getRequest().getParameter("codigo");
+        articulo=articulosModel.obtenerArticulo(codigo);
+        return "/articulos/modificaArticulo";
+    }
+    public String eliminarArticulo(){
+        String codigo = JsfUtils.getRequest().getParameter("codigo");
+        if (articulosModel.eliminarArticulo(codigo) > 0) {
+            JsfUtils.addFlashMessage("exito", "Registro Eliminado");
+        }else{
+            JsfUtils.addFlashMessage("fracaso", "Error al  Eliminar Registro");
+        }
+        return null;
+    }
 }

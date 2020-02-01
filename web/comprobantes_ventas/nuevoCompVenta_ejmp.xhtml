@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:define name="titulo">
+        titulo
+    </ui:define>
+    <ui:define name="contenido">
+        <h2>JSF add data to data table example.</h2>
+        <h:form>
+            <h:dataTable value="#{test.students}" var="student">
+                <h:column>
+                    <f:facet name="header">Name</f:facet>   	
+                        #{student.name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Class</f:facet>
+                        #{student.stuClass}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">RollNo</f:facet>
+                        #{student.rollNo}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Age</f:facet>
+                        #{student.age}
+                </h:column>
+                <h:column>
+    			<f:facet name="header">Action</f:facet>
+    			<h:commandLink value="Delete" 
+                                       action="#{test.deleteAction(student)}" />
+    				
+    		</h:column>
+            </h:dataTable>
+
+            <h3>Add Employee</h3>
+            <hr />
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td><h:inputText size="15" value="#{test.name}" /></td>
+                </tr>
+                <tr>
+                    <td>Class:</td>
+                    <td><h:inputText size="15" value="#{test.stuClass}" /></td>
+                </tr>
+                <tr>
+                    <td>RollNo:</td>
+                    <td><h:inputText size="10" value="#{test.rollNo}" /></td>
+                </tr>
+                <tr>
+                    <td>Age:</td>
+                    <td><h:inputText size="3" value="#{test.age}" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><h:commandButton value="Add Student"
+                                         action="#{test.addStudent}" /></td>
+                </tr>
+            </table>
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>

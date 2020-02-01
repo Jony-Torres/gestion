@@ -6,14 +6,14 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import py.com.jtorres.entidades.Marcas;
+import py.com.jtorres.entidades.ComprobantesDetalle;
 
 /**
  *
  * @author jonathan.torres
  */
 @Stateless
-public class MarcasModel {
+public class ComprobanteDetModel {
 
     @PersistenceContext(unitName = "gestionPU")
     private EntityManager em;
@@ -21,12 +21,9 @@ public class MarcasModel {
     public void persist(Object object) {
         em.persist(object);
     }
-
-    public List<Marcas> listMarcas(){
-        Query query = em.createNamedQuery("Marcas.findAll");
+    public List<ComprobantesDetalle> listComprob(){
+        Query query = em.createNamedQuery("ComprobantesDetalle.findAll");
         return query.getResultList();
     }
-    public Marcas obtenerMarca(String codigo){
-        return em.find(Marcas.class,Integer.parseInt(codigo));
-    }
+    
 }

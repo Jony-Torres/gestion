@@ -12,50 +12,64 @@
 
     <ui:define name="contenido">
         <div class="row">
-                <h:form prependId="false">
-                    <h:dataTable value="#{articulosBeans.listArticulos}" class="table table-bordered" style="width:100%"
-                                 var="item" id="tabla">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Codigo"/>
-                            </f:facet>
-                            <h:outputText value="#{item.codArticulo}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Descripcion"/>
-                            </f:facet>
-                            <h:outputText value="#{item.descripcion}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Estado"/>
-                            </f:facet>
-                            <h:outputText value="#{item.estado.descEstado}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Iva"/>
-                            </f:facet>
-                            <h:outputText value="#{item.codIva.descripcion}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Proveedor"/>
-                            </f:facet>
-                            <h:outputText value="#{item.codProveedor.codPersona.primerNombre} #{item.codProveedor.codPersona.primerApellido}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:form>
+            <h:form prependId="false">
+                <h:dataTable value="#{articulosBeans.listArticulos}" class="table table-bordered" style="width:100%"
+                             var="item" id="tabla">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Codigo"/>
+                        </f:facet>
+                        <h:outputText value="#{item.codArticulo}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Descripcion"/>
+                        </f:facet>
+                        <h:outputText value="#{item.descripcion}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Estado"/>
+                        </f:facet>
+                        <h:outputText value="#{item.estado.descEstado}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Iva"/>
+                        </f:facet>
+                        <h:outputText value="#{item.codIva.descripcion}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Proveedor"/>
+                        </f:facet>
+                        <h:outputText value="#{item.codProveedor.codPersona.primerNombre} #{item.codProveedor.codPersona.primerApellido}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Operaciones"/>
+                        </f:facet>
+                        <h:commandLink class="btn btn-info" action="#{articulosBeans.obtenerArticulo()}">
+                            <i class="glyphicon glyphicon-edit"></i>
+                            <f:param name="codigo" value="#{item.codArticulo}"/>
+                        </h:commandLink>
+                        <h:commandLink class="btn btn-danger" style="margin-left: 5px" onclick="return confirmar()"
+                                       action="#{articulosBeans.eliminarArticulo()}">
+                            <i class="glyphicon glyphicon-trash"></i>
+                            <f:param name="codigo" value="#{item.codArticulo}"/>
+                        </h:commandLink>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
         </div>
         <script>
             $(document).ready(function () {
                 $("#tabla").dataTable({
-            responsive: true,
-            language: {
-                url: '../resources/datatables/es-ar.json' //Ubicacion del archivo con el json del idioma.
-            }
-        });
+                    responsive: true,
+                    language: {
+                        url: '../resources/datatables/es-ar.json' //Ubicacion del archivo con el json del idioma.
+                    }
+                });
             });
             function confirmar() {
                 return confirm("Realmente desea ELIMINAR el registro?")

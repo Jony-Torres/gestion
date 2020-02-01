@@ -43,7 +43,7 @@ public class Monedas implements Serializable {
     @NotNull
     @Size(min = 1, max = 10)
     @Column(name = "cod_moneda")
-    private String codMoneda;
+    private Integer codMoneda;
     @Size(max = 100)
     @Column(name = "desc_moneda")
     private String descMoneda;
@@ -67,15 +67,15 @@ public class Monedas implements Serializable {
     public Monedas() {
     }
 
-    public Monedas(String codMoneda) {
+    public Monedas(Integer codMoneda) {
         this.codMoneda = codMoneda;
     }
 
-    public String getCodMoneda() {
+    public Integer getCodMoneda() {
         return codMoneda;
     }
 
-    public void setCodMoneda(String codMoneda) {
+    public void setCodMoneda(Integer codMoneda) {
         this.codMoneda = codMoneda;
     }
 

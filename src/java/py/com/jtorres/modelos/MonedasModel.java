@@ -25,6 +25,6 @@ public class MonedasModel {
         return query.getResultList();
     }
     public Monedas obtenerMoneda(String codigo){
-        return em.find(Monedas.class,codigo);
+        return em.find(Monedas.class,Integer.parseInt(codigo));
     }
 }

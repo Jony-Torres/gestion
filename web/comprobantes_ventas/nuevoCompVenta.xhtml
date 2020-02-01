@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:define name="titulo">
+        Comprobante Venta
+    </ui:define>
+    <ui:define name="contenido">
+        <h:form>
+            <h1><h:outputText value="Datos Cliente"/></h1>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <h:outputLabel value="Sucursal:" for="codSucursal" />
+                    <h:selectOneMenu id="codSucursal" value="#{comprobanteCabBeans.comprobante.codSucursal}" 
+                                     title="CodSucursal" required="true" class="form-control"
+                                     requiredMessage="The CodSucursal field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{fixme}"/>
+                    </h:selectOneMenu>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <h:outputLabel value="Deposito:" for="codDeposito" />
+                    <h:selectOneMenu id="codDeposito" value="#{comprobanteCabBeans.comprobante.codDeposito}" 
+                                     title="CodDeposito" required="true" class="form-control"
+                                     requiredMessage="The CodDeposito field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{fixme}"/>
+                    </h:selectOneMenu>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <h:outputLabel value="Serie:" for="codCompSerie" />
+                    <h:selectOneMenu id="codCompSerie" value="#{comprobanteCabBeans.comprobante.codCompSerie}" 
+                                     title="CodCompSerie" required="true" class="form-control"
+                                     requiredMessage="The CodCompSerie field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{fixme}"/>
+                    </h:selectOneMenu>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <h:outputLabel value="Nro:" for="numeroComp" />
+                    <h:inputText id="numeroComp" value="#{comprobanteCabBeans.comprobante.numeroComp}" 
+                                 title="NumeroComp" required="true" class="form-control" 
+                                 requiredMessage="The NumeroComp field is required."/>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <h:outputLabel value="Cliente:" for="codCliente" />
+                    <h:selectOneMenu id="codCliente" value="#{comprobanteCabBeans.comprobante.codCliente}" 
+                                     title="CodCliente" required="true" class="form-control"
+                                     requiredMessage="The CodCliente field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{fixme}"/>
+                    </h:selectOneMenu>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <h:outputLabel value="Cond Venta:" for="codCondVenta" />
+                    <h:selectOneMenu id="codCondVenta" value="#{comprobanteCabBeans.comprobante.codCondVenta}" 
+                                     title="CodCondVenta" required="true" class="form-control" 
+                                     requiredMessage="The CodCondVenta field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{condVentaBeans.listCondVentas}" var="condven"
+                                           itemValue="#{condven}"
+                                           itemLabel="#{condven.descCondicion}"/>
+                    </h:selectOneMenu>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <h:outputLabel value="Moneda:" for="codMoneda" />
+                    <h:selectOneMenu id="codMoneda" value="#{comprobanteCabBeans.comprobante.codMoneda}" 
+                                     title="CodMoneda" class="form-control">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{monedasBeans.listMonedas}" var="moneda"
+                                           itemValue="#{moneda}"
+                                           itemLabel="#{moneda.descMoneda}"/>
+                    </h:selectOneMenu>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <h:outputLabel value="Cobrador:" for="codCobrador" />
+                    <h:selectOneMenu id="codCobrador" value="#{comprobanteCabBeans.comprobante.codCobrador}" 
+                                     title="CodCobrador" class="form-control">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{cobradoresBeans.listCobradores}" var="cob"
+                                           itemValue="#{cob}"
+                                           itemLabel="#{cob.codPersona.primerNombre} #{cob.codPersona.primerApellido}"/>
+                    </h:selectOneMenu>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <h:outputLabel value="Vendedor:" for="codVendedor" />
+                    <h:selectOneMenu id="codVendedor" value="#{comprobanteCabBeans.comprobante.codVendedor}" 
+                                     title="CodVendedor" class="form-control">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{vendedoresBeans.listVendedores}" var="ven"
+                                           itemValue="#{ven}"
+                                           itemLabel="#{ven.codPersona.primerNombre} #{ven.codPersona.primerApellido}"/>
+                    </h:selectOneMenu>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <h:outputLabel value="Total:" for="totalComprob" />
+                    <h:inputText id="totalComprob" value="#{comprobanteCabBeans.comprobante.totalComprob}" 
+                                 title="TotalComprob" class="form-control"/>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <h:outputLabel value="Total Gravada:" for="totalGravada" />
+                    <h:inputText id="totalGravada" value="#{comprobanteCabBeans.comprobante.totalGravada}" 
+                                 title="TotalGravada" class="form-control"/> 
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <h:outputLabel value="Total Iva:" for="totalIva" />
+                    <h:inputText id="totalIva" value="#{comprobanteCabBeans.comprobante.totalIva}" 
+                                 title="TotalIva" class="form-control"/>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

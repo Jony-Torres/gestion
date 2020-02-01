@@ -26,4 +26,7 @@ public class CategoriasModel {
         Query query = em.createNamedQuery("Categorias.findAll");
         return query.getResultList();
     }
+    public Categorias obtenerCategoria(String codigo){
+        return em.find(Categorias.class,Integer.parseInt(codigo));
+    }
 }

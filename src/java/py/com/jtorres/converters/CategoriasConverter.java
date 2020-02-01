@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package py.com.jtorres.converters;
 
 import java.util.logging.Level;
@@ -14,24 +10,24 @@ import javax.faces.convert.FacesConverter;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import py.com.jtorres.entidades.Monedas;
-import py.com.jtorres.modelos.MonedasModel;
+import py.com.jtorres.entidades.Categorias;
+import py.com.jtorres.modelos.CategoriasModel;
 
 /**
  *
  * @author jonathan.torres
  */
-@FacesConverter(forClass = Monedas.class)
-public class MonedasConverter implements Converter{
+@FacesConverter(forClass = Categorias.class)
+public class CategoriasConverter implements Converter{
 
-    MonedasModel monedasModel = lookupMonedasModelBean();
-
+    CategoriasModel categoriasModel = lookupCategoriasModelBean();
+    
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        if (value == null || value.isEmpty()) {
+       if (value == null || value.isEmpty()) {
             return null;
         }
-        return monedasModel.obtenerMoneda(value);
+        return categoriasModel.obtenerCategoria(value);
     }
 
     @Override
@@ -39,16 +35,16 @@ public class MonedasConverter implements Converter{
         if (value == null) {
             return "";
         }
-        if (value instanceof Monedas) {
-            return Integer.toString(((Monedas) value).getCodMoneda());
+        if (value instanceof Categorias) {
+            return Integer.toString(((Categorias) value).getCodCategoria());
         }
         return "";
     }
 
-    private MonedasModel lookupMonedasModelBean() {
+    private CategoriasModel lookupCategoriasModelBean() {
         try {
             Context c = new InitialContext();
-            return (MonedasModel) c.lookup("java:global/gestion/MonedasModel!py.com.jtorres.modelos.MonedasModel");
+            return (CategoriasModel) c.lookup("java:global/gestion/CategoriasModel!py.com.jtorres.modelos.CategoriasModel");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package py.com.jtorres.converters;
 
 import java.util.logging.Level;
@@ -14,24 +10,24 @@ import javax.faces.convert.FacesConverter;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import py.com.jtorres.entidades.Monedas;
-import py.com.jtorres.modelos.MonedasModel;
+import py.com.jtorres.entidades.Iva;
+import py.com.jtorres.modelos.IvaModel;
 
 /**
  *
  * @author jonathan.torres
  */
-@FacesConverter(forClass = Monedas.class)
-public class MonedasConverter implements Converter{
+@FacesConverter(forClass = Iva.class)
+public class IvaConverter implements Converter{
 
-    MonedasModel monedasModel = lookupMonedasModelBean();
+    IvaModel ivaModel = lookupIvaModelBean();
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         if (value == null || value.isEmpty()) {
             return null;
         }
-        return monedasModel.obtenerMoneda(value);
+        return ivaModel.obtenerIva(value);
     }
 
     @Override
@@ -39,16 +35,16 @@ public class MonedasConverter implements Converter{
         if (value == null) {
             return "";
         }
-        if (value instanceof Monedas) {
-            return Integer.toString(((Monedas) value).getCodMoneda());
+        if (value instanceof Iva) {
+            return Integer.toString(((Iva) value).getCodIva());
         }
         return "";
     }
 
-    private MonedasModel lookupMonedasModelBean() {
+    private IvaModel lookupIvaModelBean() {
         try {
             Context c = new InitialContext();
-            return (MonedasModel) c.lookup("java:global/gestion/MonedasModel!py.com.jtorres.modelos.MonedasModel");
+            return (IvaModel) c.lookup("java:global/gestion/IvaModel!py.com.jtorres.modelos.IvaModel");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
