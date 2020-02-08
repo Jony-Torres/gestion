@@ -11,6 +11,10 @@
         Comprobante Venta
     </ui:define>
     <ui:define name="contenido">
+        <h:panelGroup layout="block" class="alert alert-danger"
+                      rendered="#{not empty facesContext.messageList}">
+            <h:messages/>
+        </h:panelGroup>
         <h:form>
             <h1><h:outputText value="Datos Cliente"/></h1>
             <div class="col-md-3">
@@ -18,9 +22,11 @@
                     <h:outputLabel value="Sucursal:" for="codSucursal" />
                     <h:selectOneMenu id="codSucursal" value="#{comprobanteCabBeans.comprobante.codSucursal}" 
                                      title="CodSucursal" required="true" class="form-control"
-                                     requiredMessage="The CodSucursal field is required.">
+                                     requiredMessage="La Sucursal es Obligatorio">
                         <!-- TODO: update below reference to list of available items-->
-                        <f:selectItems value="#{fixme}"/>
+                        <f:selectItems value="#{sucursalesBeans.sucursalList}" var="suc"
+                                           itemValue="#{suc}"
+                                           itemLabel="#{suc.descripcion}"/>
                     </h:selectOneMenu>
                 </div>
             </div>
@@ -29,9 +35,11 @@
                     <h:outputLabel value="Deposito:" for="codDeposito" />
                     <h:selectOneMenu id="codDeposito" value="#{comprobanteCabBeans.comprobante.codDeposito}" 
                                      title="CodDeposito" required="true" class="form-control"
-                                     requiredMessage="The CodDeposito field is required.">
+                                     requiredMessage="El Deposito es Obligatorio">
                         <!-- TODO: update below reference to list of available items-->
-                        <f:selectItems value="#{fixme}"/>
+                        <f:selectItems value="#{articulosDepBeans.depositosList}" var="dep"
+                                           itemValue="#{dep}"
+                                           itemLabel="#{dep.descripcion}"/>
                     </h:selectOneMenu>
                 </div>
             </div>
@@ -40,7 +48,7 @@
                     <h:outputLabel value="Serie:" for="codCompSerie" />
                     <h:selectOneMenu id="codCompSerie" value="#{comprobanteCabBeans.comprobante.codCompSerie}" 
                                      title="CodCompSerie" required="true" class="form-control"
-                                     requiredMessage="The CodCompSerie field is required.">
+                                     requiredMessage="La Serie es Obligatorio">
                         <!-- TODO: update below reference to list of available items-->
                         <f:selectItems value="#{fixme}"/>
                     </h:selectOneMenu>
@@ -51,7 +59,7 @@
                     <h:outputLabel value="Nro:" for="numeroComp" />
                     <h:inputText id="numeroComp" value="#{comprobanteCabBeans.comprobante.numeroComp}" 
                                  title="NumeroComp" required="true" class="form-control" 
-                                 requiredMessage="The NumeroComp field is required."/>
+                                 requiredMessage="El Numero es Obligatorio"/>
                 </div>
             </div>
             <div class="col-md-3">
@@ -59,9 +67,11 @@
                     <h:outputLabel value="Cliente:" for="codCliente" />
                     <h:selectOneMenu id="codCliente" value="#{comprobanteCabBeans.comprobante.codCliente}" 
                                      title="CodCliente" required="true" class="form-control"
-                                     requiredMessage="The CodCliente field is required.">
+                                     requiredMessage="El Cliente es Obligatorio">
                         <!-- TODO: update below reference to list of available items-->
-                        <f:selectItems value="#{fixme}"/>
+                        <f:selectItems value="#{clientesBeans.listaClientes}" var="cl"
+                                           itemValue="#{cl}"
+                                           itemLabel="#{cl.codPersona.primerNombre} #{cl.codPersona.primerApellido}"/>
                     </h:selectOneMenu>
                 </div>
             </div>
@@ -70,7 +80,7 @@
                     <h:outputLabel value="Cond Venta:" for="codCondVenta" />
                     <h:selectOneMenu id="codCondVenta" value="#{comprobanteCabBeans.comprobante.codCondVenta}" 
                                      title="CodCondVenta" required="true" class="form-control" 
-                                     requiredMessage="The CodCondVenta field is required.">
+                                     requiredMessage="La Condicion de Venta es Obligatorio">
                         <!-- TODO: update below reference to list of available items-->
                         <f:selectItems value="#{condVentaBeans.listCondVentas}" var="condven"
                                            itemValue="#{condven}"
